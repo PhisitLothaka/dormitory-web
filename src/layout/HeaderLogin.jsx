@@ -1,8 +1,8 @@
 import { BuildingIcon } from "../icons";
 
-export default function Header() {
+export default function HeaderLogin() {
   return (
-    <div className="  bg-[--primary-color] w-screen z-50 text-white flex justify-between">
+    <div className=" absolute bg-[--primary-color] w-screen z-50 text-white flex justify-between">
       <div className="flex gap-4 p-3 items-center">
         <div>
           <BuildingIcon />
@@ -11,9 +11,8 @@ export default function Header() {
       </div>
 
       <div className="flex gap-4 items-center px-3">
-        <div>Home</div>
-        <div>News</div>
-        <div>Log out</div>
+        <div>Login</div>
+        <div>Register</div>
       </div>
     </div>
   );

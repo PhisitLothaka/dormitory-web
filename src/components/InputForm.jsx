@@ -1,8 +1,20 @@
-export default function InputForm({ title, type = "text" }) {
+export default function InputForm({
+  text,
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+}) {
   return (
-    <div className="flex gap-2">
-      <label htmlFor="">{title}</label>
-      <input type={type} className="bg-[#E5E7EB] rounded-sm" />
+    <div className="flex gap-2 ">
+      <label htmlFor="">{text}</label>
+      <input
+        type={type}
+        className="bg-gray-200 rounded-md p-2 border focus:outline-[--primary-color]"
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+      />
     </div>
   );
 }

@@ -5,20 +5,27 @@ import Layout from "../layout/Layout";
 import HomePage from "../page/HomePage";
 import Summarize from "../page/Summarize";
 import RegisterPage from "../page/RegisterPage";
+import Authenticated from "../features/auth/Authenticated";
+import RedirectIfAuthenticated from "../features/auth/RedirectIfAuthenticated";
 
 const router = createBrowserRouter([
   {
     path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
+    element: (
+      <RedirectIfAuthenticated>
+        <LoginPage />
+      </RedirectIfAuthenticated>
+    ),
   },
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <Authenticated>
+        <Layout />
+      </Authenticated>
+    ),
     children: [
+      { path: "/register", element: <RegisterPage /> },
       { path: "", element: <HomePage /> },
       { path: "summarize", element: <Summarize /> },
     ],
