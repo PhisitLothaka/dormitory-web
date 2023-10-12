@@ -9,7 +9,7 @@ export default function HeaderLogin({ login, register }) {
         <div>
           <BuildingIcon />
         </div>
-        <div className="cursor-default ">dormitory</div>
+        <div className="cursor-default  ">dormitory</div>
       </div>
 
       <div className="flex gap-4 items-center px-3">

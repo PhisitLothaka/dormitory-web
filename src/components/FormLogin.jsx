@@ -1,6 +1,6 @@
 import { useState } from "react";
 import InputForm from "./InputForm";
-import ButtonForm from "./buttonForm";
+import ButtonForm from "./ButtonForm";
 import { useAuth } from "../hooks/use-auth";
 import { toast } from "react-toastify";
 

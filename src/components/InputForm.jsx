@@ -6,7 +6,7 @@ export default function InputForm({
   onChange,
 }) {
   return (
-    <div className="flex gap-2 ">
+    <div className="flex gap-2 items-center ">
       <label htmlFor="">{text}</label>
       <input
         type={type}

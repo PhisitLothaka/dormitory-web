@@ -1,5 +1,3 @@
-import ButtonForm from "../components/ButtonForm";
-import Modal from "../components/Modal";
 import RegisterContainer from "../features/auth/RegisterContainer";
 import HeaderLogin from "../layout/HeaderLogin";
 
@@ -19,12 +17,9 @@ export default function RegisterPage() {
             />
           </div>
           <div className="w-1/2 bg-gray-200 flex justify-center items-center  ">
-            <div className="flex flex-col gap-5 w-40">
-              <Modal title="Register">
-                <RegisterContainer />
-              </Modal>
-              <ButtonForm text="Owner" />
-              <ButtonForm text="User" />
+            <div className="flex flex-col gap-5">
+              <RegisterContainer text="Owner" />
+              <RegisterContainer text="User" />
             </div>
           </div>
         </div>
