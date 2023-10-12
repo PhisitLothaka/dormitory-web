@@ -5,7 +5,7 @@ export default function LoginPage() {
   return (
     <>
       <div>
-        <HeaderLogin />
+        <HeaderLogin login="bg-gray-200 text-[--primary-color]  cursor-default" />
       </div>
 
       <div className="flex">

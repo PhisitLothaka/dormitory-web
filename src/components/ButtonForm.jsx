@@ -1,7 +1,11 @@
-export default function ButtonForm({ text }) {
+export default function ButtonForm({ text, className }) {
   return (
     <button
-      className="bg-[#5A6C80] text-white px-3 py-1 rounded-md hover:bg-gray-300 hover:text-[#5A6C80]"
+      className={`${
+        className
+          ? className
+          : "bg-[--primary-color] text-white hover:bg-gray-100 hover:text-[#5A6C80]"
+      } px-3 py-1 rounded-md `}
       type="submit"
     >
       {text}
