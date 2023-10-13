@@ -10,11 +10,10 @@ import axios from "../config/axios";
 export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const [authUser, setAuthUser] = useState(null);
-  console.log(
-    "🚀 ~ file: AuthContext.jsx:14 ~ AuthContextProvider ~ authUser:",
-    authUser
-  );
+
   const [initialLoading, setInitialLoading] = useState(true);
 
   useEffect(() => {
@@ -33,13 +32,22 @@ export default function AuthContextProvider({ children }) {
   }, []);
 
   const loginAdmin = async (credential) => {
-    const res = await axios.post("/auth/login/admin", credential);
-    addAccessToken(res.data.accessToken);
-    setAuthUser(res.data.user);
-    console.log(
-      "🚀 ~ file: AuthContext.jsx:36 ~ AuthContextProvider ~ authUser:",
-      authUser
-    );
+    try {
+      const res = await axios.post("/auth/login/admin", credential);
+      addAccessToken(res.data.accessToken);
+      setAuthUser(res.data.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const loginUser = async (credential) => {
+    try {
+      const res = await axios.post("/auth/login/user", credential);
+      addAccessToken(res.data.accessToken);
+      setAuthUser(res.data.user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const registerAdmin = async (registerInputObject) => {
@@ -60,6 +68,9 @@ export default function AuthContextProvider({ children }) {
     <AuthContext.Provider
       value={{
         loginAdmin,
+        loginUser,
+        setIsAdmin,
+        isAdmin,
         authUser,
         initialLoading,
         registerAdmin,

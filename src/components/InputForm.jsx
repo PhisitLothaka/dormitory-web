@@ -10,7 +10,7 @@ export default function InputForm({
       <label htmlFor="">{text}</label>
       <input
         type={type}
-        className="bg-gray-200 rounded-md p-2 border focus:outline-[--primary-color]"
+        className="bg-gray-100 rounded-md p-2 border focus:outline-[--primary-color]"
         placeholder={placeholder}
         value={value}
         onChange={onChange}
