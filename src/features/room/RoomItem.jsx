@@ -1,3 +1,5 @@
+import { SettingIcon } from "../../icons";
+
 export default function RoomItem({
   name,
   user = "-",
@@ -15,7 +17,9 @@ export default function RoomItem({
         <div>{price}</div>
         <div>{statusPayment}</div>
         <div>{statusRoom === "IDLE" ? "ห้องว่าง" : "ห้องไม่ว่าง"}</div>
-        <div>ตั้งค่า</div>
+        <div className="flex justify-center cursor-pointer">
+          <SettingIcon />
+        </div>
       </div>
     </div>
   );
