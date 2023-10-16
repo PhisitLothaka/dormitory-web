@@ -1,6 +1,7 @@
 import RoomItem from "../features/room/RoomItem";
 
 export default function RoomList({ allRoom }) {
+  console.log("🚀 ~ file: RoomList.jsx:4 ~ RoomList ~ allRoom:", allRoom);
   return (
     <>
       <div className="grid grid-cols-7 bg-[--primary-color] text-white p-2 text-center rounded-md">
@@ -15,6 +16,9 @@ export default function RoomList({ allRoom }) {
 
       {allRoom.map((el) => (
         <RoomItem
+          userName={el?.userRoom[0]?.user?.firstName}
+          mobile={el?.userRoom[0]?.user?.mobile}
+          statusPayment={el?.userRoom[0]?.statusPayment}
           roomObj={el}
           key={el.id}
           name={el.name}

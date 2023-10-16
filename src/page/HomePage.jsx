@@ -15,7 +15,7 @@ export default function HomePage() {
         console.log("🚀 ~ file: HomePage.jsx:11 ~ axios.get ~ err:", err);
       });
   }, []);
-  console.log("🚀 ~ file: HomePage.jsx:8 ~ HomePage ~ allRoom:", allRoom);
+
   return (
     <div className="flex flex-col gap-3">
       <CreateRoomContainer />

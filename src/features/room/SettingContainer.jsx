@@ -1,17 +1,21 @@
 import Modal from "../../components/Modal";
-import { SettingIcon } from "../../icons";
 import { useState } from "react";
 import SettingForm from "./SettingForm";
+import SettingUserForm from "./SettingUserForm";
 
-export default function SettingContainer({ roomObj }) {
+export default function SettingContainer({ roomObj, children, isSettingUser }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <div onClick={() => setIsOpen(true)}>
-        <SettingIcon />
+      <div onClick={() => setIsOpen(true)} className="cursor-pointer">
+        {children}
       </div>
       <Modal title="แก้ไขข้อมูล" open={isOpen} onClose={() => setIsOpen(false)}>
-        <SettingForm roomObj={roomObj} />
+        {isSettingUser ? (
+          <SettingUserForm roomObj={roomObj} />
+        ) : (
+          <SettingForm roomObj={roomObj} />
+        )}
       </Modal>
     </div>
   );
