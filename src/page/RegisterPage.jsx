@@ -1,7 +1,9 @@
 import RegisterContainer from "../features/auth/RegisterContainer";
+import { useAuth } from "../hooks/use-auth";
 import HeaderLogin from "../layout/HeaderLogin";
 
 export default function RegisterPage() {
+  const { setRegisAdmin } = useAuth;
   return (
     <>
       <div>
@@ -18,8 +20,14 @@ export default function RegisterPage() {
           </div>
           <div className="w-1/2 bg-gray-200 flex justify-center items-center  ">
             <div className="flex flex-col gap-5">
-              <RegisterContainer text="Owner" />
-              <RegisterContainer text="User" />
+              <RegisterContainer
+                text="Owner"
+                onClick={() => setRegisAdmin(true)}
+              />
+              <RegisterContainer
+                text="User"
+                onClick={() => setRegisAdmin(false)}
+              />
             </div>
           </div>
         </div>

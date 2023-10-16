@@ -49,7 +49,7 @@ export default function RegisterForm() {
   });
   const [error, setError] = useState({});
 
-  const { registerAdmin } = useAuth();
+  const { registerAdmin, registerUser, regisAdmin } = useAuth();
   const handleChangeInput = (e) => {
     setInputRegister({ ...inputRegister, [e.target.name]: e.target.value });
   };
@@ -61,9 +61,16 @@ export default function RegisterForm() {
       return setError(validationError);
     }
     setError({});
-    registerAdmin(inputRegister).catch((err) => {
-      toast.error(err.response?.data.message);
-    });
+
+    {
+      regisAdmin
+        ? registerAdmin(inputRegister).catch((err) => {
+            toast.error(err.response?.data.message);
+          })
+        : registerUser(inputRegister).catch((err) => {
+            toast.error(err.response?.data.message);
+          });
+    }
   };
 
   return (

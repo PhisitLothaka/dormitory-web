@@ -8,13 +8,14 @@ export default function RoomList({ allRoom }) {
         <div>ผู้เช่า</div>
         <div>เบอร์โทรศัพท์</div>
         <div>ราคาห้อง</div>
-        <div>สถานะการขำระ</div>
+        <div>สถานะการชำระ</div>
         <div>สถานะห้อง</div>
         <div></div>
       </div>
 
       {allRoom.map((el) => (
         <RoomItem
+          roomObj={el}
           key={el.id}
           name={el.name}
           price={el.price}

@@ -11,6 +11,7 @@ export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [regisAdmin, setRegisAdmin] = useState(false);
 
   const [authUser, setAuthUser] = useState(null);
 
@@ -55,6 +56,11 @@ export default function AuthContextProvider({ children }) {
     addAccessToken(res.data.accessToken);
     setAuthUser(res.data.user);
   };
+  const registerUser = async (registerInputObject) => {
+    const res = await axios.post("/auth/register/user", registerInputObject);
+    addAccessToken(res.data.accessToken);
+    setAuthUser(res.data.user);
+  };
   const logout = () => {
     removeAccessToken();
     setAuthUser(null);
@@ -74,6 +80,9 @@ export default function AuthContextProvider({ children }) {
         authUser,
         initialLoading,
         registerAdmin,
+        registerUser,
+        regisAdmin,
+        setRegisAdmin,
         logout,
         updateProfile,
       }}

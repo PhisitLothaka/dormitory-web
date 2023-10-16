@@ -1,6 +1,7 @@
-import { SettingIcon } from "../../icons";
+import SettingContainer from "./SettingContainer";
 
 export default function RoomItem({
+  roomObj,
   name,
   user = "-",
   mobile = "-",
@@ -18,7 +19,7 @@ export default function RoomItem({
         <div>{statusPayment}</div>
         <div>{statusRoom === "IDLE" ? "ห้องว่าง" : "ห้องไม่ว่าง"}</div>
         <div className="flex justify-center cursor-pointer">
-          <SettingIcon />
+          <SettingContainer roomObj={roomObj} />
         </div>
       </div>
     </div>
