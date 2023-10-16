@@ -11,7 +11,7 @@ export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [regisAdmin, setRegisAdmin] = useState(false);
+  const [regIsAdmin, setRegIsAdmin] = useState(false);
 
   const [authUser, setAuthUser] = useState(null);
 
@@ -81,8 +81,8 @@ export default function AuthContextProvider({ children }) {
         initialLoading,
         registerAdmin,
         registerUser,
-        regisAdmin,
-        setRegisAdmin,
+        regIsAdmin,
+        setRegIsAdmin,
         logout,
         updateProfile,
       }}
