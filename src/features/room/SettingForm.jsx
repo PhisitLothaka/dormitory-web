@@ -3,7 +3,6 @@ import axios from "../../config/axios";
 import ButtonForm from "../../components/ButtonForm";
 
 export default function SettingForm({ roomObj }) {
-  console.log("🚀 ~ file: SettingForm.jsx:2 ~ SettingForm ~ roomObj:", roomObj);
   const [input, setInput] = useState({
     name: "",
     floor: "",

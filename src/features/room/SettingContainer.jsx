@@ -1,7 +1,7 @@
 import Modal from "../../components/Modal";
 import { useState } from "react";
 import SettingForm from "./SettingForm";
-import SettingUserForm from "./SettingUserForm";
+import SettingUserContainer from "./SettingUserContainer";
 
 export default function SettingContainer({ roomObj, children, isSettingUser }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +12,7 @@ export default function SettingContainer({ roomObj, children, isSettingUser }) {
       </div>
       <Modal title="แก้ไขข้อมูล" open={isOpen} onClose={() => setIsOpen(false)}>
         {isSettingUser ? (
-          <SettingUserForm roomObj={roomObj} />
+          <SettingUserContainer roomObj={roomObj} />
         ) : (
           <SettingForm roomObj={roomObj} />
         )}
