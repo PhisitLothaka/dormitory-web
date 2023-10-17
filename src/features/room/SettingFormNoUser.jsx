@@ -1,15 +1,43 @@
 import axios from "../../config/axios";
 import ButtonForm from "../../components/ButtonForm";
 import { useState } from "react";
+// import Joi from "joi";
+import { toast } from "react-toastify";
+
+// const idCardUserSchema = Joi.object({
+//   idCardUser: Joi.string()
+//     .pattern(/^[0-9]{13}$/)
+//     .required(),
+// });
+
+// const validateIdCard = (input) => {
+//   const { error } = idCardUserSchema.validate(input, { abortEarly: false });
+//   console.log(
+//     "🚀 ~ file: SettingFormNoUser.jsx:15 ~ validateIdCard ~ error:",
+//     error
+//   );
+//   if (error) {
+//     const { message, path } = error.details;
+
+//     const result = {};
+//     result[path[0]] = message;
+//     return result;
+//   }
+// };
 
 export default function SettingFormNoUser({ roomObj }) {
+  // const [error, setError] = useState({});
+
   const [input, setInput] = useState({
     idCardUser: "",
     idRoom: roomObj.id,
   });
 
   const handleSubmitForm = async () => {
-    await axios.post("/room/user", input);
+    // e.preventDefault();
+    await axios.post("/room/user", input).catch((err) => {
+      toast.error(err.response?.data.message);
+    });
   };
 
   const handleOnChange = (e) => {
@@ -23,7 +51,7 @@ export default function SettingFormNoUser({ roomObj }) {
     >
       <input
         type="text"
-        className="bg-gray-100 rounded-md p-1 focus:outline-[--primary-color]"
+        className={`bg-gray-100 rounded-md p-1 focus:outline-[--primary-color]`}
         placeholder="เลขบัตรประชาชน"
         onChange={handleOnChange}
       />

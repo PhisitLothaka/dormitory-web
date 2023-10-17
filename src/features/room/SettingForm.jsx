@@ -4,9 +4,9 @@ import ButtonForm from "../../components/ButtonForm";
 
 export default function SettingForm({ roomObj }) {
   const [input, setInput] = useState({
-    name: "",
-    floor: "",
-    price: "",
+    name: roomObj.name,
+    floor: roomObj.floor,
+    price: roomObj.price,
     id: roomObj.id,
   });
   const handleOnChange = (e) => {
@@ -51,13 +51,13 @@ export default function SettingForm({ roomObj }) {
       />
       <ButtonForm
         text="บันทึก"
-        className=" bg-[--primary-color] text-white hover:bg-gray-200 hover:text-[--primary-color]"
+        className=" bg-[--success-color] text-white hover:bg-gray-200 hover:text-[--primary-color]"
       />
       <div
-        className=" bg-[--primary-color] text-white hover:bg-gray-200 hover:text-[--primary-color] rounded-md"
+        className=" bg-[--alert-color] text-white hover:bg-gray-200 hover:text-[--primary-color] rounded-md p-1"
         onClick={() => axios.delete(`/room/${roomObj.id}`)}
       >
-        <button className="w-full">ลบ</button>
+        <button className="w-full ">ลบ</button>
       </div>
     </form>
   );
