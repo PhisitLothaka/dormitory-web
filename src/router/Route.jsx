@@ -7,6 +7,7 @@ import Summarize from "../page/Summarize";
 import RegisterPage from "../page/RegisterPage";
 import Authenticated from "../features/auth/Authenticated";
 import RedirectIfAuthenticated from "../features/auth/RedirectIfAuthenticated";
+import MeterPage from "../page/MeterPage";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <HomePage /> },
       { path: "summarize", element: <Summarize /> },
+      { path: "meter", element: <MeterPage /> },
     ],
   },
 ]);
