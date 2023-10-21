@@ -1,7 +1,21 @@
 import { useState } from "react";
 
-export default function MeterItemElectric({ name, unitOld }) {
-  const [unit, setUnit] = useState("");
+export default function MeterItemElectric({
+  name,
+  unitOld,
+  date,
+  unitPrice,
+  adminId,
+  roomId,
+}) {
+  const [input, setInput] = useState({
+    priceUnit: unitPrice,
+    unit: "",
+    createAt: date,
+    roomId: roomId,
+    adminId: adminId,
+  });
+
   return (
     <div
       className="grid grid-cols-4 bg-white p-1  rounded-md text-[--primary-color] text-center
@@ -12,14 +26,18 @@ export default function MeterItemElectric({ name, unitOld }) {
       <div>
         <input
           type="text"
+          value={input.unit}
           className="bg-gray-200 rounded-md p-0.5 text-center"
           onChange={(e) => {
-            setUnit(e.target.value);
+            setInput({ ...input, [e.target.name]: e.target.value });
           }}
+          name="unit"
         />
       </div>
       <div>
-        {unit - unitOld < 0 || isNaN(unit - unitOld) ? "-" : unit - unitOld}
+        {input.unit - unitOld < 0 || isNaN(input.unit - unitOld)
+          ? "-"
+          : input.unit - unitOld}
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import RegisterPage from "../page/RegisterPage";
 import Authenticated from "../features/auth/Authenticated";
 import RedirectIfAuthenticated from "../features/auth/RedirectIfAuthenticated";
 import MeterPage from "../page/MeterPage";
+import MeterContextProvider from "../contexts/meterContext";
 
 const router = createBrowserRouter([
   {
@@ -30,13 +31,18 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <Authenticated>
-        <Layout />
+        <MeterContextProvider>
+          <Layout />
+        </MeterContextProvider>
       </Authenticated>
     ),
     children: [
       { path: "", element: <HomePage /> },
       { path: "summarize", element: <Summarize /> },
-      { path: "meter", element: <MeterPage /> },
+      {
+        path: "meter",
+        element: <MeterPage />,
+      },
     ],
   },
 ]);
