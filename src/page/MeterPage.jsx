@@ -6,11 +6,11 @@ import MeterElectricList from "../features/meter/MeterElectricList";
 
 export default function MeterPage() {
   const [meterWater, setMeterWater] = useState([]);
-  const [meterElectric, setMeterElectric] = useState([]);
   console.log(
-    "🚀 ~ file: MeterPage.jsx:10 ~ MeterPage ~ meterElectric:",
-    meterElectric
+    "🚀 ~ file: MeterPage.jsx:9 ~ MeterPage ~ meterWater:",
+    meterWater
   );
+  const [meterElectric, setMeterElectric] = useState([]);
 
   const [isClick, setIsClick] = useState(false);
   const [date, setDate] = useState("");
