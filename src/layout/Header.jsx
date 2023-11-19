@@ -1,4 +1,4 @@
-import { BuildingIcon } from "../icons";
+import { FaRegBuilding } from "react-icons/fa";
 import { useAuth } from "../hooks/use-auth";
 import ButtonForm from "../components/ButtonForm";
 
@@ -8,7 +8,7 @@ export default function Header() {
     <div className=" bg-[--primary-color] w-screen z-50 text-white flex justify-between">
       <div className="flex gap-4 p-3 items-center">
         <div>
-          <BuildingIcon />
+          <FaRegBuilding />
         </div>
         <div>dormitory</div>
       </div>

@@ -6,12 +6,7 @@ import MeterElectricList from "../features/meter/MeterElectricList";
 
 export default function MeterPage() {
   const [meterWater, setMeterWater] = useState([]);
-  console.log(
-    "🚀 ~ file: MeterPage.jsx:9 ~ MeterPage ~ meterWater:",
-    meterWater
-  );
   const [meterElectric, setMeterElectric] = useState([]);
-
   const [isClick, setIsClick] = useState(false);
   const [date, setDate] = useState("");
 
@@ -30,6 +25,12 @@ export default function MeterPage() {
       }
     }
   }, [date]);
+
+  console.log(meterWater);
+  const unitPriceWater = meterWater[0]?.room?.MeterWater[0]?.priceUnit;
+  const unitPriceElectric = meterElectric[0]?.room?.MeterElectric[0]?.priceUnit;
+  const unitPrice = isClick ? unitPriceElectric : unitPriceWater;
+
   return (
     <div className="px-4">
       <div className="flex flex-col gap-2">
@@ -55,7 +56,7 @@ export default function MeterPage() {
             }}
           />
         </div>
-        <div className="flex">
+        <div className="flex ">
           <input
             type="date"
             onChange={async (e) => {
@@ -63,11 +64,39 @@ export default function MeterPage() {
             }}
           />
         </div>
+        <div className="flex items-center gap-2">
+          <div className="bg-white text-[--primary-color] p-2 rounded-md">
+            หน่วยละ
+            {
+              <input
+                disabled
+                className="bg-gray-100 rounded-md w-10 text-center  "
+                placeholder={unitPrice || "-"}
+              />
+            }
+            บาท
+          </div>
+          <ButtonForm text="แก้ไข" />
+        </div>
       </div>
-
-      {isClick
-        ? meterElectric && <MeterElectricList allRoom={meterElectric} />
-        : meterWater && <MeterList allRoom={meterWater} />}
+      <form>
+        {isClick
+          ? meterElectric && (
+              <MeterElectricList
+                allRoom={meterElectric}
+                date={date}
+                unitPrice={unitPrice}
+              />
+            )
+          : meterWater && <MeterList allRoom={meterWater} />}
+        <div className="flex justify-end p-2 ">
+          {(meterElectric.length || meterWater.length || "") && (
+            <button className="bg-[--success-color] text-white px-3 py-1.5 rounded-md ">
+              บันทึก
+            </button>
+          )}
+        </div>
+      </form>
     </div>
   );
 }
