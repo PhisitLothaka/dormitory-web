@@ -1,24 +1,26 @@
 import ButtonMenuBar from "../components/buttonMenuBar";
-import { BuildingIcon, MeterIcon, SummarizeIcon } from "../icons";
 import { Link } from "react-router-dom";
+import { FaRegBuilding } from "react-icons/fa";
+import { IoSpeedometer } from "react-icons/io5";
+import { TbReportSearch } from "react-icons/tb";
 
 export default function Menu() {
   return (
     <div className="flex gap-3 py-3 px-4">
-      <Link to="/">
+      <Link to="/home">
         <ButtonMenuBar text="ผังห้องพัก">
-          <BuildingIcon color="--primary-color" />
+          <FaRegBuilding className="w-[35px] h-[35px]" />
         </ButtonMenuBar>
       </Link>
 
-      <Link to="/meter">
+      <Link to="meter">
         <ButtonMenuBar text="บันทึกมิเตอร์">
-          <MeterIcon />
+          <IoSpeedometer className="w-[35px] h-[35px]" />
         </ButtonMenuBar>
       </Link>
-      <Link to="/summarize">
+      <Link to="summarize">
         <ButtonMenuBar text="สรุปยอด">
-          <SummarizeIcon />
+          <TbReportSearch className="w-[35px] h-[35px]" />
         </ButtonMenuBar>
       </Link>
     </div>

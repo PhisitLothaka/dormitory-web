@@ -1,4 +1,4 @@
-import { BuildingIcon } from "../icons";
+import { FaRegBuilding } from "react-icons/fa";
 import ButtonForm from "../components/ButtonForm";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,7 @@ export default function HeaderLogin({ login, register }) {
     <div className=" absolute bg-[--primary-color] w-screen z-50 text-white flex justify-between px-5">
       <div className="flex gap-4 p-3 items-center">
         <div>
-          <BuildingIcon />
+          <FaRegBuilding />
         </div>
         <div className="cursor-default  ">dormitory</div>
       </div>
