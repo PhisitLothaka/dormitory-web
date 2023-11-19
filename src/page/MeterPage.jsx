@@ -9,11 +9,6 @@ export default function MeterPage() {
   const [meterElectric, setMeterElectric] = useState([]);
   const [isClick, setIsClick] = useState(false);
   const [date, setDate] = useState("");
-  const [inputForm, setInputForm] = useState([]);
-  console.log(
-    "🚀 ~ file: MeterPage.jsx:13 ~ MeterPage ~ inputForm:",
-    inputForm
-  );
 
   useEffect(() => {
     if (isClick) {
@@ -91,7 +86,6 @@ export default function MeterPage() {
                 allRoom={meterElectric}
                 date={date}
                 unitPrice={unitPrice}
-                setInputForm={setInputForm}
               />
             )
           : meterWater && <MeterList allRoom={meterWater} />}

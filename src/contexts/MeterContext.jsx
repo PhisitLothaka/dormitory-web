@@ -4,17 +4,13 @@ import { createContext } from "react";
 
 export const MeterContext = createContext();
 export default function MeterContextProvider({ children }) {
-  const [input, setInput] = useState([
-    {
-      priceUnit: "",
-      unit: "",
-      createAt: "",
-      roomId: "",
-      adminId: "",
-    },
-  ]);
-
-  //   const createMeterForm = async () => {};
+  const [input, setInput] = useState({
+    priceUnit: "",
+    unit: "",
+    createAt: "",
+    roomId: "",
+    adminId: "",
+  });
 
   return (
     <MeterContext.Provider value={{ setInput, input }}>

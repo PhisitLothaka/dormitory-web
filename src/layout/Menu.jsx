@@ -16,9 +16,11 @@ export default function Menu() {
           <MeterIcon />
         </ButtonMenuBar>
       </Link>
-      <ButtonMenuBar text="สรุปยอด">
-        <SummarizeIcon />
-      </ButtonMenuBar>
+      <Link to="/summarize">
+        <ButtonMenuBar text="สรุปยอด">
+          <SummarizeIcon />
+        </ButtonMenuBar>
+      </Link>
     </div>
   );
 }

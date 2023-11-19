@@ -1,11 +1,6 @@
 import MeterItemElectric from "./MeterItemElectric";
 
-export default function MeterElectricList({
-  allRoom,
-  date,
-  unitPrice,
-  setInputForm,
-}) {
+export default function MeterElectricList({ allRoom, date, unitPrice }) {
   return (
     <>
       <div className="grid grid-cols-4 bg-[--primary-color] p-1 text-white rounded-md text-center mt-4">
@@ -24,7 +19,6 @@ export default function MeterElectricList({
           unitPrice={unitPrice}
           roomId={el.roomId}
           adminId={el.adminId}
-          setInputForm={setInputForm}
         />
       ))}
     </>
