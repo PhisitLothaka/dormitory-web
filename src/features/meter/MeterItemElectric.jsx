@@ -1,22 +1,34 @@
 import { useState } from "react";
 import axios from "../../config/axios";
+import { useEffect } from "react";
 export default function MeterItemElectric({
   name,
   unitOld,
   date,
-  unitPrice,
+  priceUnit,
   roomId,
 }) {
   const [input, setInput] = useState({
-    priceUnit: unitPrice,
+    priceUnit: priceUnit,
     unit: "",
     createAt: date,
     roomId: roomId,
     unitUsed: "",
   });
+  console.log("🚀 ~ file: MeterItemElectric.jsx:18 ~ input:", input);
 
   let result = "";
-
+  {
+    input.unit - unitOld < 0 || isNaN(input.unit - unitOld)
+      ? "-"
+      : (result = input.unit - unitOld);
+  }
+  useEffect(() => {
+    setInput({ ...input, createAt: date });
+  }, [date]);
+  useEffect(() => {
+    setInput({ ...input, unitUsed: result });
+  }, [input.unit]);
   return (
     <div
       className="grid grid-cols-5 bg-white p-1  rounded-md text-[--primary-color] text-center
@@ -35,11 +47,7 @@ export default function MeterItemElectric({
           value={input.unit}
         />
       </div>
-      <div>
-        {input.unit - unitOld < 0 || isNaN(input.unit - unitOld)
-          ? "-"
-          : (result = input.unit - unitOld)}
-      </div>
+      <div>{result}</div>
       <div>
         <button
           className="bg-[--success-color] text-white w-fit px-2 rounded-md "

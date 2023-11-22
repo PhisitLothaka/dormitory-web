@@ -1,6 +1,6 @@
 import MeterItemWater from "./MeterItemWater";
 
-export default function MeterList({ allRoom, unitPrice, date }) {
+export default function MeterList({ allRoom, date }) {
   return (
     <>
       <div className="grid grid-cols-5 bg-[--primary-color] p-1 text-white rounded-md text-center mt-4">
@@ -12,12 +12,12 @@ export default function MeterList({ allRoom, unitPrice, date }) {
 
       {allRoom.map((el) => (
         <MeterItemWater
-          key={el.id}
-          name={el?.room?.name}
-          unitOld={el?.room?.MeterWater[0]?.unit}
-          unitPrice={unitPrice}
+          key={el?.roomId?.id}
+          name={el?.name}
+          unitOld={el?.unit}
+          priceUnit={el?.priceUnit}
           date={date}
-          roomId={el?.id}
+          roomId={el?.roomId}
         />
       ))}
     </>

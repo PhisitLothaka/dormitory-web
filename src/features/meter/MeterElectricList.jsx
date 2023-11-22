@@ -1,6 +1,6 @@
 import MeterItemElectric from "./MeterItemElectric";
 
-export default function MeterElectricList({ allRoom, date, unitPrice }) {
+export default function MeterElectricList({ allRoom, date }) {
   return (
     <>
       <div className="grid grid-cols-5 bg-[--primary-color] p-1 text-white rounded-md text-center mt-4">
@@ -12,11 +12,11 @@ export default function MeterElectricList({ allRoom, date, unitPrice }) {
 
       {allRoom.map((el) => (
         <MeterItemElectric
-          key={el.id}
-          name={el?.room?.name}
-          unitOld={el?.room?.MeterElectric[0]?.unit}
+          key={el.roomId}
+          name={el?.name}
+          unitOld={el?.unit}
+          priceUnit={el?.priceUnit}
           date={date}
-          unitPrice={unitPrice}
           roomId={el.roomId}
         />
       ))}
