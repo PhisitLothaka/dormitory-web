@@ -1,11 +1,10 @@
 import { useState } from "react";
-
+import axios from "../../config/axios";
 export default function MeterItemElectric({
   name,
   unitOld,
   date,
   unitPrice,
-  adminId,
   roomId,
 }) {
   const [input, setInput] = useState({
@@ -13,12 +12,14 @@ export default function MeterItemElectric({
     unit: "",
     createAt: date,
     roomId: roomId,
-    adminId: adminId,
+    unitUsed: "",
   });
+
+  let result = "";
 
   return (
     <div
-      className="grid grid-cols-4 bg-white p-1  rounded-md text-[--primary-color] text-center
+      className="grid grid-cols-5 bg-white p-1  rounded-md text-[--primary-color] text-center
      mt-4"
     >
       <div>{name}</div>
@@ -26,18 +27,36 @@ export default function MeterItemElectric({
       <div>
         <input
           type="text"
-          value={input.unit}
           className="bg-gray-200 rounded-md p-0.5 text-center"
           onChange={(e) => {
-            setInput({ ...input, [e.target.name]: e.target.value });
+            setInput(() => ({ ...input, unit: e.target.value }));
           }}
-          name="unit"
+          placeholder="-"
+          value={input.unit}
         />
       </div>
       <div>
         {input.unit - unitOld < 0 || isNaN(input.unit - unitOld)
           ? "-"
-          : input.unit - unitOld}
+          : (result = input.unit - unitOld)}
+      </div>
+      <div>
+        <button
+          className="bg-[--success-color] text-white w-fit px-2 rounded-md "
+          onClick={async () => {
+            try {
+              if (result) {
+                setInput(() => ({ ...input, unitUsed: result }));
+              }
+
+              await axios.post("/meter/electric", input);
+            } catch (err) {
+              console.log(err);
+            }
+          }}
+        >
+          บันทึก
+        </button>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { TbReportSearch } from "react-icons/tb";
 export default function Menu() {
   return (
     <div className="flex gap-3 py-3 px-4">
-      <Link to="/home">
+      <Link to="/">
         <ButtonMenuBar text="ผังห้องพัก">
           <FaRegBuilding className="w-[35px] h-[35px]" />
         </ButtonMenuBar>

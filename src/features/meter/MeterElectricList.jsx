@@ -3,7 +3,7 @@ import MeterItemElectric from "./MeterItemElectric";
 export default function MeterElectricList({ allRoom, date, unitPrice }) {
   return (
     <>
-      <div className="grid grid-cols-4 bg-[--primary-color] p-1 text-white rounded-md text-center mt-4">
+      <div className="grid grid-cols-5 bg-[--primary-color] p-1 text-white rounded-md text-center mt-4">
         <div>ห้อง</div>
         <div>ก่อนหน้า</div>
         <div>ล่าสุด</div>
@@ -18,7 +18,6 @@ export default function MeterElectricList({ allRoom, date, unitPrice }) {
           date={date}
           unitPrice={unitPrice}
           roomId={el.roomId}
-          adminId={el.adminId}
         />
       ))}
     </>

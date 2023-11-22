@@ -29,7 +29,8 @@ export default function MeterPage() {
   console.log(meterWater);
   const unitPriceWater = meterWater[0]?.room?.MeterWater[0]?.priceUnit;
   const unitPriceElectric = meterElectric[0]?.room?.MeterElectric[0]?.priceUnit;
-  const unitPrice = isClick ? unitPriceElectric : unitPriceWater;
+  let unitPrice = "";
+  isClick ? (unitPrice = unitPriceElectric) : (unitPrice = unitPriceWater);
 
   return (
     <div className="px-4">
@@ -67,36 +68,33 @@ export default function MeterPage() {
         <div className="flex items-center gap-2">
           <div className="bg-white text-[--primary-color] p-2 rounded-md">
             หน่วยละ
-            {
-              <input
-                disabled
-                className="bg-gray-100 rounded-md w-10 text-center  "
-                placeholder={unitPrice || "-"}
-              />
-            }
+            <input
+              className="bg-gray-100 rounded-md w-10 text-center bg-gray-200 mx-1 "
+              onChange={(e) => {
+                unitPrice = e.target.value;
+              }}
+              value={unitPrice}
+            />
+            {console.log(
+              "🚀 ~ file: MeterPage.jsx:80 ~ MeterPage ~ unitPrice:",
+              unitPrice
+            )}
             บาท
           </div>
-          <ButtonForm text="แก้ไข" />
         </div>
       </div>
-      <form>
-        {isClick
-          ? meterElectric && (
-              <MeterElectricList
-                allRoom={meterElectric}
-                date={date}
-                unitPrice={unitPrice}
-              />
-            )
-          : meterWater && <MeterList allRoom={meterWater} />}
-        <div className="flex justify-end p-2 ">
-          {(meterElectric.length || meterWater.length || "") && (
-            <button className="bg-[--success-color] text-white px-3 py-1.5 rounded-md ">
-              บันทึก
-            </button>
+
+      {isClick
+        ? meterElectric && (
+            <MeterElectricList
+              allRoom={meterElectric}
+              date={date}
+              unitPrice={unitPrice}
+            />
+          )
+        : meterWater && (
+            <MeterList allRoom={meterWater} unitPrice={unitPrice} date={date} />
           )}
-        </div>
-      </form>
     </div>
   );
 }

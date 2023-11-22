@@ -9,7 +9,6 @@ export default function MeterContextProvider({ children }) {
     unit: "",
     createAt: "",
     roomId: "",
-    adminId: "",
   });
 
   return (
