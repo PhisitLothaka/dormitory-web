@@ -10,6 +10,9 @@ import RedirectIfAuthenticated from "../features/auth/RedirectIfAuthenticated";
 import MeterPage from "../page/MeterPage";
 import MeterContextProvider from "../contexts/MeterContext";
 import Order from "../page/Order";
+import UserPage from "../page/UserPage";
+import ProtectedRoute from "../features/auth/ProtectedRoute";
+import ProtectedAdmin from "../features/auth/ProtectedAdmin";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,7 @@ const router = createBrowserRouter([
       </RedirectIfAuthenticated>
     ),
   },
+
   {
     path: "/",
     element: (
@@ -38,12 +42,46 @@ const router = createBrowserRouter([
       </Authenticated>
     ),
     children: [
-      { path: "", element: <HomePage /> },
-      { path: "summarize", element: <Summarize /> },
-      { path: "order", element: <Order /> },
+      {
+        path: "",
+        element: (
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "summarize",
+        element: (
+          <ProtectedRoute>
+            <Summarize />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "order",
+        element: (
+          <ProtectedRoute>
+            <Order />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/user",
+        element: (
+          <ProtectedAdmin>
+            <UserPage />
+          </ProtectedAdmin>
+        ),
+      },
+
       {
         path: "meter",
-        element: <MeterPage />,
+        element: (
+          <ProtectedRoute>
+            <MeterPage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

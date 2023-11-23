@@ -12,9 +12,9 @@ export default function SettingContainer({ roomObj, children, isSettingUser }) {
       </div>
       <Modal title="แก้ไขข้อมูล" open={isOpen} onClose={() => setIsOpen(false)}>
         {isSettingUser ? (
-          <SettingUserContainer roomObj={roomObj} />
+          <SettingUserContainer roomObj={roomObj} setIsOpen={setIsOpen} />
         ) : (
-          <SettingForm roomObj={roomObj} />
+          <SettingForm roomObj={roomObj} setIsOpen={setIsOpen} />
         )}
       </Modal>
     </div>

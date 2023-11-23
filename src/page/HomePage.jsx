@@ -22,7 +22,7 @@ export default function HomePage() {
       .catch((err) => {
         console.log("🚀 ~ file: HomePage.jsx:11 ~ axios.get ~ err:", err);
       });
-  }, []);
+  }, [allRoom]);
 
   return (
     <>

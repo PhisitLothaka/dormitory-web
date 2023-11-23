@@ -1,7 +1,7 @@
 import axios from "axios";
 import ButtonForm from "../../components/ButtonForm";
 
-export default function SettingFormHaveUser({ roomObj }) {
+export default function SettingFormHaveUser({ roomObj, setIsOpen }) {
   console.log(
     "🚀 ~ file: SettingFormHaveUser.jsx:4 ~ SettingFormHaveUser ~ roomObj:",
     roomObj
@@ -11,7 +11,7 @@ export default function SettingFormHaveUser({ roomObj }) {
     await axios.delete(`/room/user/${roomObj?.userRoom[0]?.id}`);
   };
   return (
-    <form className="grid grid-cols-2 gap-3" onSubmit={handleSubmitForm}>
+    <form className="grid grid-cols-2 gap-3">
       <div className="p-1">ชื่อ</div>
       <div className="bg-gray-100 rounded-md p-1 ">
         {`${roomObj?.userRoom[0]?.user?.firstName}  ${roomObj?.userRoom[0]?.user?.lastName}`}
@@ -26,6 +26,11 @@ export default function SettingFormHaveUser({ roomObj }) {
       </div>
 
       <ButtonForm
+        onClick={(e) => {
+          e.preventDefault();
+          handleSubmitForm();
+          setIsOpen(false);
+        }}
         text="ลบ"
         className="col-span-2 bg-[--alert-color] text-white"
       />

@@ -12,6 +12,7 @@ export const AuthContext = createContext();
 export default function AuthContextProvider({ children }) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [regIsAdmin, setRegIsAdmin] = useState(false);
+  const [role, setRole] = useState("");
 
   const [authUser, setAuthUser] = useState(null);
 
@@ -22,6 +23,7 @@ export default function AuthContextProvider({ children }) {
       axios
         .get("/auth/me")
         .then((res) => {
+          setRole(res.data.role);
           setAuthUser(res.data.user);
         })
         .finally(() => {
@@ -37,6 +39,7 @@ export default function AuthContextProvider({ children }) {
       const res = await axios.post("/auth/login/admin", credential);
       addAccessToken(res.data.accessToken);
       setAuthUser(res.data.user);
+      setRole(res.data.role);
     } catch (error) {
       console.log(error);
     }
@@ -46,6 +49,7 @@ export default function AuthContextProvider({ children }) {
       const res = await axios.post("/auth/login/user", credential);
       addAccessToken(res.data.accessToken);
       setAuthUser(res.data.user);
+      setRole(res.data.role);
     } catch (error) {
       console.log(error);
     }
@@ -55,11 +59,13 @@ export default function AuthContextProvider({ children }) {
     const res = await axios.post("/auth/register/admin", registerInputObject);
     addAccessToken(res.data.accessToken);
     setAuthUser(res.data.user);
+    setRole(res.data.role);
   };
   const registerUser = async (registerInputObject) => {
     const res = await axios.post("/auth/register/user", registerInputObject);
     addAccessToken(res.data.accessToken);
     setAuthUser(res.data.user);
+    setRole(res.data.role);
   };
   const logout = () => {
     removeAccessToken();
@@ -73,6 +79,7 @@ export default function AuthContextProvider({ children }) {
   return (
     <AuthContext.Provider
       value={{
+        role,
         loginAdmin,
         loginUser,
         setIsAdmin,

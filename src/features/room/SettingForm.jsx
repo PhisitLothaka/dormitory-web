@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "../../config/axios";
 import ButtonForm from "../../components/ButtonForm";
 
-export default function SettingForm({ roomObj }) {
+export default function SettingForm({ roomObj, setIsOpen }) {
   const [input, setInput] = useState({
     name: roomObj.name,
     floor: roomObj.floor,
@@ -16,10 +16,11 @@ export default function SettingForm({ roomObj }) {
     });
   };
   const handleSubmitForm = async () => {
+    console.log("update");
     await axios.patch("/room", input);
   };
   return (
-    <form className="grid grid-cols-2 gap-2 " onSubmit={handleSubmitForm}>
+    <form className="grid grid-cols-2 gap-2 ">
       <div>ชื่อห้อง</div>
       <input
         type="text"
@@ -51,11 +52,20 @@ export default function SettingForm({ roomObj }) {
       />
       <ButtonForm
         text="บันทึก"
+        onClick={(e) => {
+          e.preventDefault();
+          handleSubmitForm();
+          setIsOpen(false);
+        }}
         className=" bg-[--success-color] text-white hover:bg-gray-200 hover:text-[--primary-color]"
       />
       <div
         className=" bg-[--alert-color] text-white hover:bg-gray-200 hover:text-[--primary-color] rounded-md p-1"
-        onClick={() => axios.delete(`/room/${roomObj.id}`)}
+        onClick={(e) => {
+          e.preventDefault();
+          axios.delete(`/room/${roomObj.id}`);
+          setIsOpen(false);
+        }}
       >
         <button className="w-full ">ลบ</button>
       </div>

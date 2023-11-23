@@ -4,28 +4,7 @@ import { useState } from "react";
 // import Joi from "joi";
 import { toast } from "react-toastify";
 
-// const idCardUserSchema = Joi.object({
-//   idCardUser: Joi.string()
-//     .pattern(/^[0-9]{13}$/)
-//     .required(),
-// });
-
-// const validateIdCard = (input) => {
-//   const { error } = idCardUserSchema.validate(input, { abortEarly: false });
-//   console.log(
-//     "🚀 ~ file: SettingFormNoUser.jsx:15 ~ validateIdCard ~ error:",
-//     error
-//   );
-//   if (error) {
-//     const { message, path } = error.details;
-
-//     const result = {};
-//     result[path[0]] = message;
-//     return result;
-//   }
-// };
-
-export default function SettingFormNoUser({ roomObj }) {
+export default function SettingFormNoUser({ roomObj, setIsOpen }) {
   // const [error, setError] = useState({});
 
   const [input, setInput] = useState({
@@ -45,10 +24,7 @@ export default function SettingFormNoUser({ roomObj }) {
   };
 
   return (
-    <form
-      className="flex flex-col  gap-3 justify-center items-center"
-      onSubmit={handleSubmitForm}
-    >
+    <form className="flex flex-col  gap-3 justify-center items-center">
       <input
         type="text"
         className={`bg-gray-100 rounded-md p-1 focus:outline-[--primary-color]`}
@@ -56,6 +32,11 @@ export default function SettingFormNoUser({ roomObj }) {
         onChange={handleOnChange}
       />
       <ButtonForm
+        onClick={(e) => {
+          e.preventDefault();
+          handleSubmitForm();
+          setIsOpen(false);
+        }}
         text="เพิ่มผู้เช่า"
         className="bg-[--success-color] text-white"
       />

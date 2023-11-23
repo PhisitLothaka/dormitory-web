@@ -23,7 +23,7 @@ export default function CreateRoomContainer() {
         title="เพิ่มห้องพัก"
         maxWidth="20"
       >
-        <CreateRoomForm />
+        <CreateRoomForm setIsOpen={setIsOpen} />
       </Modal>
     </>
   );

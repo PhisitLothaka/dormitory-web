@@ -7,6 +7,7 @@ export default function MeterContextProvider({ children }) {
   const [monthOrder, setMonthOrder] = useState([]);
   const [summarize, setSummarize] = useState([]);
   const [summarizeInMonth, setSummarizeInMonth] = useState([]);
+  const [userBill, setUserBill] = useState([]);
 
   const getMeterWater = async (date) => {
     try {
@@ -83,9 +84,20 @@ export default function MeterContextProvider({ children }) {
     }
   };
 
+  const getBillUser = async () => {
+    try {
+      const res = await axios.get("/user");
+      setUserBill(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <MeterContext.Provider
       value={{
+        userBill,
+        getBillUser,
         editStatusPaymant,
         setSummarizeInMonth,
         summarizeInMonth,

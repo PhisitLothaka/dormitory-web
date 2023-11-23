@@ -2,7 +2,7 @@ import axios from "../../config/axios";
 import ButtonForm from "../../components/ButtonForm";
 import { useState } from "react";
 
-export default function CreateRoomForm() {
+export default function CreateRoomForm({ setIsOpen }) {
   const [input, setInput] = useState({ name: "", floor: "", price: "" });
   const handleOnChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -11,7 +11,7 @@ export default function CreateRoomForm() {
     await axios.post("/room", input);
   };
   return (
-    <form className="grid grid-cols-2 gap-2 " onSubmit={handleSubmitForm}>
+    <form className="grid grid-cols-2 gap-2 ">
       <div>ชื่อห้อง</div>
       <input
         type="text"
@@ -39,6 +39,11 @@ export default function CreateRoomForm() {
         name="price"
       />
       <ButtonForm
+        onClick={(e) => {
+          e.preventDefault();
+          handleSubmitForm();
+          setIsOpen(false);
+        }}
         text="บันทึก"
         className="col-span-2 bg-[--primary-color] text-white hover:bg-gray-200 hover:text-[--primary-color]"
       />
