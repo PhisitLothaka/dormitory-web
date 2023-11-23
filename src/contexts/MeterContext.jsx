@@ -4,20 +4,13 @@ import axios from "../config/axios";
 export const MeterContext = createContext();
 export default function MeterContextProvider({ children }) {
   const [meter, setMeter] = useState([]);
-  console.log(
-    "🚀 ~ file: MeterContext.jsx:7 ~ MeterContextProvider ~ meter:",
-    meter
-  );
-  const [input, setInput] = useState({
-    priceUnit: 0,
-    unit: 0,
-    createAt: 0,
-    roomId: 0,
-  });
+  const [monthOrder, setMonthOrder] = useState([]);
+  const [summarize, setSummarize] = useState([]);
+  const [summarizeInMonth, setSummarizeInMonth] = useState([]);
 
   const getMeterWater = async (date) => {
     try {
-      const res = await axios(`/meter/water/${date}`);
+      const res = await axios.get(`/meter/water/${date}`);
       setMeter(res.data);
     } catch (error) {
       console.log(error);
@@ -26,18 +19,82 @@ export default function MeterContextProvider({ children }) {
 
   const getMeterElectric = async (date) => {
     try {
-      const res = await axios(`/meter/electric/${date}`);
+      const res = await axios.get(`/meter/electric/${date}`);
       setMeter(res.data);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const getSummarize = async (date) => {
+    try {
+      const res = await axios.get(`/summarize/${date}`);
+      setSummarize(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const createSummarize = async (data) => {
+    try {
+      console.log(data);
+      const res = await axios.post(`/summarize`, { data });
+      const { count } = res;
+      if (count) {
+        setSummarize([]);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getMonthOrder = async () => {
+    try {
+      const res = await axios.get("/summarize/order");
+
+      const month = res.data.map((el) => {
+        let date = el.timeReceipt;
+        let myDate = new Date(date);
+        let month = myDate.getMonth() + 1;
+        return { month };
+      });
+      setMonthOrder(month);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getSummarizeInMonth = async (month) => {
+    try {
+      const res = await axios.get(`/summarize/order/${month}`, month);
+
+      setSummarizeInMonth(res.data.sumarizeInMonth);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const editStatusPaymant = async (checkPayment, id, month) => {
+    try {
+      await axios.patch(`/summarize/order`, { checkPayment, id });
+      getSummarizeInMonth(month);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <MeterContext.Provider
       value={{
-        setInput,
-        input,
+        editStatusPaymant,
+        setSummarizeInMonth,
+        summarizeInMonth,
+        getSummarizeInMonth,
+        monthOrder,
+        getMonthOrder,
+        summarize,
+        getSummarize,
+        createSummarize,
         meter,
         getMeterWater,
         getMeterElectric,

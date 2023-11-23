@@ -16,15 +16,15 @@ export default function SummarizeList({ summarizeObj }) {
         <div>ค่าไฟฟ้า</div>
         <div>ยอดรวม</div>
       </div>
-      {summarizeObj.map((el) => (
+      {summarizeObj.map((el, idx) => (
         <SummarizeItem
-          key={el.id}
-          room={el?.room?.name}
-          user={el?.user?.firstName}
-          //   statusPayment={el}
-          roomPrice={el?.room?.price}
-          water={el?.unitWater}
-          electric={el?.unitElectric}
+          key={idx}
+          room={el?.roomName}
+          user={el?.userName}
+          statusPayment={el?.statusPayment}
+          roomPrice={el?.priceRoom}
+          water={el?.priceUnitWater}
+          electric={el?.priceUnitElectric}
           total={el?.totalPrice}
         />
       ))}

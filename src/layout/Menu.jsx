@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaRegBuilding } from "react-icons/fa";
 import { IoSpeedometer } from "react-icons/io5";
 import { TbReportSearch } from "react-icons/tb";
+import { BiDetail } from "react-icons/bi";
 
 export default function Menu() {
   return (
@@ -21,6 +22,11 @@ export default function Menu() {
       <Link to="summarize">
         <ButtonMenuBar text="สรุปยอด">
           <TbReportSearch className="w-[35px] h-[35px]" />
+        </ButtonMenuBar>
+      </Link>
+      <Link to="order">
+        <ButtonMenuBar text="ประวัติ">
+          <BiDetail className="w-[35px] h-[35px]" />
         </ButtonMenuBar>
       </Link>
     </div>
