@@ -20,8 +20,6 @@ export default function MeterItemWater({
     unitUsed: "",
   });
 
-  console.log("🚀 ~ file: MeterItemWater.jsx:20 ~ input:", input);
-
   let result = "";
   {
     input.unit - unitOld < 0 || isNaN(input.unit - unitOld)
@@ -60,6 +58,12 @@ export default function MeterItemWater({
             try {
               await axios.post("/meter/water", input);
               getMeterWater(date);
+              console.log(unitOld);
+              if (unitOld === undefined) {
+                console.log("first");
+                unitOld = input.unit;
+                input.unit = "";
+              }
             } catch (err) {
               console.log(err);
             }

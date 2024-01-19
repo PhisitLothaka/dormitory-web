@@ -20,6 +20,7 @@ export default function Order() {
     "December",
   ];
   const { getMonthOrder, monthOrder } = useMeter();
+  console.log("🚀 ~ Order ~ monthOrder:", monthOrder);
   const [month, setMonth] = useState(0);
   console.log("🚀 ~ file: Order.jsx:24 ~ Order ~ month:", month);
   const { getSummarizeInMonth, setSummarizeInMonth } = useMeter();

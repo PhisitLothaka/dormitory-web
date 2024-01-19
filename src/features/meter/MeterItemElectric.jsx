@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "../../config/axios";
 import { useEffect } from "react";
+import { useMeter } from "../../hooks/use-meter";
 export default function MeterItemElectric({
   name,
   unitOld,
@@ -8,6 +9,7 @@ export default function MeterItemElectric({
   priceUnit,
   roomId,
 }) {
+  const { getMeterElectric } = useMeter();
   const [input, setInput] = useState({
     priceUnit: priceUnit,
     unit: "",
@@ -15,7 +17,6 @@ export default function MeterItemElectric({
     roomId: roomId,
     unitUsed: "",
   });
-  console.log("🚀 ~ file: MeterItemElectric.jsx:18 ~ input:", input);
 
   let result = "";
   {
@@ -58,6 +59,12 @@ export default function MeterItemElectric({
               }
 
               await axios.post("/meter/electric", input);
+              getMeterElectric(date);
+              console.log(unitOld);
+              if (unitOld === undefined) {
+                unitOld = input.unit;
+                input.unit = "";
+              }
             } catch (err) {
               console.log(err);
             }

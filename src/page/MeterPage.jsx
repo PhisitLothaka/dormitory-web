@@ -8,7 +8,7 @@ export default function MeterPage() {
   const [isClick, setIsClick] = useState(false);
   const [date, setDate] = useState("");
 
-  const { getMeterWater, getMeterElectric, meter } = useMeter();
+  const { getMeterWater, getMeterElectric, meter, setMeter } = useMeter();
   // console.log("🚀 ~ file: MeterPage.jsx:15 ~ MeterPage ~ meterWater:", meter);
 
   useEffect(() => {
@@ -22,6 +22,7 @@ export default function MeterPage() {
       }
     }
   }, [date]);
+  useEffect(() => {}, [meter]);
 
   return (
     <div className="px-4">
@@ -70,7 +71,9 @@ export default function MeterPage() {
 
       {isClick
         ? meter && <MeterElectricList allRoom={meter} date={date} />
-        : meter && <MeterList allRoom={meter} date={date} />}
+        : meter && (
+            <MeterList allRoom={meter} date={date} setMeter={setMeter} />
+          )}
     </div>
   );
 }

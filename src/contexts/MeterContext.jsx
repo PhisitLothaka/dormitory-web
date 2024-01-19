@@ -52,6 +52,7 @@ export default function MeterContextProvider({ children }) {
   const getMonthOrder = async () => {
     try {
       const res = await axios.get("/summarize/order");
+      console.log("🚀 ~ getMonthOrder ~ res:", res);
 
       const month = res.data.map((el) => {
         let date = el.timeReceipt;
